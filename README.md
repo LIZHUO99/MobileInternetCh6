@@ -79,7 +79,7 @@ fileWriteBtnPri.setOnClickListener(new View.OnClickListener() {
 
 实现如下图：
 
-<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot1.png" style="zoom: 33%;" />
+<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot1.png" width="300" />
 
 
 
@@ -174,12 +174,12 @@ private void updateNode(Note note) {
 
 #### 在NoteActivity界面添加了三个RadioButton，默认选Regular
 
-<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot4.jpg" style="zoom:33%;" />
+<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot4.jpg" width="300" />
 
 
 
 ## 整体效果如下：
 
-<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot2.jpg" style="zoom:33%;" />
+<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot2.jpg" width="300" />
 
-<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot3.jpg" style="zoom:33%;" />
+<img src="https://github.com/LIZHUO99/MobileInternetCh6/blob/master/snapshots/Screenshot3.jpg" width="300" />
