@@ -16,4 +16,7 @@
     <!-- Note -->
     <string name="take_a_note">Take a note</string>
     <string name="confirm">Confirm</string>
+    <string name="write_to_files_external_private">Write to files (external private)</string>
+    <string name="write_to_files_external_public">Write to files (external public)</string>
+    <string name="write_to_files_internal">Write to files (internal)</string>
 </resources>

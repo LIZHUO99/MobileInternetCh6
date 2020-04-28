@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".operation.activity.DatabaseActivity"></activity>
+        <activity android:name=".operation.activity.DatabaseActivity" />
         <activity android:name=".operation.activity.SettingActivity" />
         <activity
             android:name=".MainActivity"

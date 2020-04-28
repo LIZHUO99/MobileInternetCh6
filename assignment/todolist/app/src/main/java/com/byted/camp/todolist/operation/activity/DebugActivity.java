@@ -1,13 +1,16 @@
 package com.byted.camp.todolist.operation.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -62,8 +65,8 @@ public class DebugActivity extends AppCompatActivity {
             }
         });
 
-        final Button fileWriteBtn = findViewById(R.id.btn_write_files);
-        final TextView fileText = findViewById(R.id.text_files);
+        final Button fileWriteBtn = findViewById(R.id.btn_write_files_public);
+        final TextView fileText = findViewById(R.id.text_files_public);
         fileWriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +89,62 @@ public class DebugActivity extends AppCompatActivity {
                         });
                     }
                 }).start();
+            }
+        });
+
+        final Button fileWriteBtnPri = findViewById(R.id.btn_write_files_private);
+        final TextView fileTextPri = findViewById(R.id.text_files_private);
+        fileWriteBtnPri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        File dir = getExternalFilesDir(null);
+                        File file = new File(dir, "test");
+                        FileUtils.writeContentToFile(file, "#external private \ntest content.");
+                        final List<String> contents = FileUtils.readContentFromFile(file);
+                        DebugActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                fileTextPri.setText("");
+                                for (String content: contents){
+                                    fileTextPri.append(content + "\n");
+                                }
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+
+        final Button fileWriteBtnIn = findViewById(R.id.btn_write_files_internal);
+        final TextView fileTextIn = findViewById(R.id.text_files_internal);
+
+        @SuppressLint("StaticFieldLeak")
+        class MyTask extends AsyncTask<String, Integer, List<String>> {
+            @Override
+            protected List<String> doInBackground(String... strings) {
+                File dir = getFilesDir();
+                File file = new File(dir, "test");
+                FileUtils.writeContentToFile(file, "#internal internal \ntest content.");
+
+                return FileUtils.readContentFromFile(file);
+            }
+
+            @Override
+            protected void onPostExecute(List<String> strings) {
+                fileTextIn.setText("");
+                for (String string : strings){
+                    fileTextIn.append(string + "\n");
+                }
+            }
+        }
+
+        fileWriteBtnIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MyTask().execute();
             }
         });
     }
